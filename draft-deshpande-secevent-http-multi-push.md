@@ -4,7 +4,7 @@ abbrev: "Multi-Push SET"
 category: info
 
 docname: draft-deshpande-secevent-http-multi-push-latest
-submissiontype: indepdendent
+submissiontype: independent
 number:
 date:
 consensus: true
