@@ -38,8 +38,11 @@ informative:
 
 --- abstract
 
-TODO Abstract
-
+This specification defines how multiple Security Event Tokens (SETs) can be
+delivered to an intended recipient using HTTP POST over TLS.  The SETs
+are transmitted in the body of an HTTP POST request to an endpoint
+operated by the recipient, and the recipient indicates successful or
+failed transmission via the HTTP response.
 
 --- middle
 
