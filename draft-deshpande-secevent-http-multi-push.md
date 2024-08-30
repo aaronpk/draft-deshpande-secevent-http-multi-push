@@ -4,7 +4,7 @@ abbrev: "Multi-Push SET"
 category: std
 
 docname: draft-deshpande-secevent-http-multi-push-latest
-submissiontype: independent
+submissiontype: IETF
 number:
 date:
 v: 3
