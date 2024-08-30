@@ -1,13 +1,12 @@
 ---
 title: "Multi-Push-Based Security Event Token (SET) Delivery Using HTTP"
 abbrev: "Multi-Push SET"
-category: info
+category: std
 
 docname: draft-deshpande-secevent-http-multi-push-latest
 submissiontype: independent
 number:
 date:
-consensus: true
 v: 3
 area: sec
 workgroup: secevent
