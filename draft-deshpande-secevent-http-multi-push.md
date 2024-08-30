@@ -8,18 +8,18 @@ submissiontype: IETF
 number:
 date:
 v: 3
-area: sec
-workgroup: secevent
+area: "Security"
+workgroup: "Security Events"
 keyword:
  - security event
  - secevent
 venue:
-  group: secevent
-  type: Working Group
-  mail: id-event@ietf.org
-  arch: https://datatracker.ietf.org/wg/secevent/
-  github: aaronpk/draft-deshpande-secevent-http-multi-push
-  latest: https://github.com/aaronpk/draft-deshpande-secevent-http-multi-push
+  group: "Security Events"
+  type: "Working Group"
+  mail: "id-event@ietf.org"
+  arch: "https://mailarchive.ietf.org/arch/browse/id-event/"
+  github: "aaronpk/draft-deshpande-secevent-http-multi-push"
+  latest: "https://aaronpk.github.io/draft-deshpande-secevent-http-multi-push/draft-deshpande-secevent-http-multi-push.html"
 
 author:
  -
