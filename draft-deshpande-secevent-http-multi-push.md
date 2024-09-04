@@ -56,9 +56,9 @@ failed transmission via the HTTP response.
 This specification defines a mechanism by which a transmitter of a Security Event Token (SET) {{RFC8417}} can deliver multiple SETs to an intended SET Recipient via HTTP POST {{RFC7231}} over TLS in a single POST call. {{RFC8935}} focuses on the delivery of the single SET to the receiver. This specification builds onto {{RFC8935}} to transmit multiple SETs to the receiver in a single POST call.
 
 Multi-push SET delivery is intended to help in following scenarios:
-   - The transmitter of the SET has multiple outstanding SETs to be communicated to the receiver
-   - The transmitter wants to reduce the number of outbound calls to the same receiver to optimize performance, avoid being ratelimited when number of SETs to be communicated is high
-   - The receiver wants to optimize processing multiple SETs
+  - The transmitter of the SET has multiple outstanding SETs to be communicated to the receiver
+  - The transmitter wants to reduce the number of outbound calls to the same receiver to optimize performance, avoid being ratelimited when number of SETs to be communicated is high
+  - The receiver wants to optimize processing multiple SETs
 
 Multi-push specification will handle all the usecases and scenarios for the {{RFC8935}} and make it more extensible to support multiple SETs per one outbound POST call.
 
@@ -74,8 +74,8 @@ The existing PUSH endpoint could also be extended to support accepting multiple 
 ## Transmitting SETs
 
 A Transmitter may initiate communication with the receiver in order to:
-   - Send SETs to the Receiver
-   - Recive acknowledgement of the SETs in response
+  - Send SETs to the Receiver
+  - Recive acknowledgement of the SETs in response
 
 The body of this request is of the content type "application/json". It MAY contains the following fields:
 
