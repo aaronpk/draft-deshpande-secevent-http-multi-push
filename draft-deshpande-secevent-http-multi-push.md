@@ -88,74 +88,77 @@ A JSON boolean value that indicates if more unacknowledged SETs are available to
 
 The following is a non-normative example of a Communication Object
 
-   {
-     "sets": {
-       "4d3559ec67504aaba65d40b0363faad8":
-       "eyJhbGciOiJub25lIn0.
-       eyJqdGkiOiI0ZDM1NTllYzY3NTA0YWFiYTY1ZDQwYjAzNjNmYWFkOCIsImlhdC
-       I6MTQ1ODQ5NjQwNCwiaXNzIjoiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tIiwi
-       YXVkIjpbImh0dHBzOi8vc2NpbS5leGFtcGxlLmNvbS9GZWVkcy85OGQ1MjQ2MW
-       ZhNWJiYzg3OTU5M2I3NzU0IiwiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tL0Zl
-       ZWRzLzVkNzYwNDUxNmIxZDA4NjQxZDc2NzZlZTciXSwiZXZlbnRzIjp7InVybj
-       ppZXRmOnBhcmFtczpzY2ltOmV2ZW50OmNyZWF0ZSI6eyJyZWYiOiJodHRwczov
-       L3NjaW0uZXhhbXBsZS5jb20vVXNlcnMvNDRmNjE0MmRmOTZiZDZhYjYxZTc1Mj
-       FkOSIsImF0dHJpYnV0ZXMiOlsiaWQiLCJuYW1lIiwidXNlck5hbWUiLCJwYXNz
-       d29yZCIsImVtYWlscyJdfX19.",
-       "3d0c3cf797584bd193bd0fb1bd4e7d30":
-       "eyJhbGciOiJub25lIn0.
-       eyJqdGkiOiIzZDBjM2NmNzk3NTg0YmQxOTNiZDBmYjFiZDRlN2QzMCIsImlhdC
-       I6MTQ1ODQ5NjAyNSwiaXNzIjoiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tIiwi
-       YXVkIjpbImh0dHBzOi8vamh1Yi5leGFtcGxlLmNvbS9GZWVkcy85OGQ1MjQ2MW
-       ZhNWJiYzg3OTU5M2I3NzU0IiwiaHR0cHM6Ly9qaHViLmV4YW1wbGUuY29tL0Zl
-       ZWRzLzVkNzYwNDUxNmIxZDA4NjQxZDc2NzZlZTciXSwic3ViIjoiaHR0cHM6Ly
-       9zY2ltLmV4YW1wbGUuY29tL1VzZXJzLzQ0ZjYxNDJkZjk2YmQ2YWI2MWU3NTIx
-       ZDkiLCJldmVudHMiOnsidXJuOmlldGY6cGFyYW1zOnNjaW06ZXZlbnQ6cGFzc3
-       dvcmRSZXNldCI6eyJpZCI6IjQ0ZjYxNDJkZjk2YmQ2YWI2MWU3NTIxZDkifSwi
-       aHR0cHM6Ly9leGFtcGxlLmNvbS9zY2ltL2V2ZW50L3Bhc3N3b3JkUmVzZXRFeH
-       QiOnsicmVzZXRBdHRlbXB0cyI6NX19fQ."
-     }
-   }
-   Figure 1: Example of SET Transmission
+      {
+        "sets": {
+          "4d3559ec67504aaba65d40b0363faad8":
+          "eyJhbGciOiJub25lIn0.
+          eyJqdGkiOiI0ZDM1NTllYzY3NTA0YWFiYTY1ZDQwYjAzNjNmYWFkOCIsImlhdC
+          I6MTQ1ODQ5NjQwNCwiaXNzIjoiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tIiwi
+          YXVkIjpbImh0dHBzOi8vc2NpbS5leGFtcGxlLmNvbS9GZWVkcy85OGQ1MjQ2MW
+          ZhNWJiYzg3OTU5M2I3NzU0IiwiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tL0Zl
+          ZWRzLzVkNzYwNDUxNmIxZDA4NjQxZDc2NzZlZTciXSwiZXZlbnRzIjp7InVybj
+          ppZXRmOnBhcmFtczpzY2ltOmV2ZW50OmNyZWF0ZSI6eyJyZWYiOiJodHRwczov
+          L3NjaW0uZXhhbXBsZS5jb20vVXNlcnMvNDRmNjE0MmRmOTZiZDZhYjYxZTc1Mj
+          FkOSIsImF0dHJpYnV0ZXMiOlsiaWQiLCJuYW1lIiwidXNlck5hbWUiLCJwYXNz
+          d29yZCIsImVtYWlscyJdfX19.",
+          "3d0c3cf797584bd193bd0fb1bd4e7d30":
+          "eyJhbGciOiJub25lIn0.
+          eyJqdGkiOiIzZDBjM2NmNzk3NTg0YmQxOTNiZDBmYjFiZDRlN2QzMCIsImlhdC
+          I6MTQ1ODQ5NjAyNSwiaXNzIjoiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tIiwi
+          YXVkIjpbImh0dHBzOi8vamh1Yi5leGFtcGxlLmNvbS9GZWVkcy85OGQ1MjQ2MW
+          ZhNWJiYzg3OTU5M2I3NzU0IiwiaHR0cHM6Ly9qaHViLmV4YW1wbGUuY29tL0Zl
+          ZWRzLzVkNzYwNDUxNmIxZDA4NjQxZDc2NzZlZTciXSwic3ViIjoiaHR0cHM6Ly
+          9zY2ltLmV4YW1wbGUuY29tL1VzZXJzLzQ0ZjYxNDJkZjk2YmQ2YWI2MWU3NTIx
+          ZDkiLCJldmVudHMiOnsidXJuOmlldGY6cGFyYW1zOnNjaW06ZXZlbnQ6cGFzc3
+          dvcmRSZXNldCI6eyJpZCI6IjQ0ZjYxNDJkZjk2YmQ2YWI2MWU3NTIxZDkifSwi
+          aHR0cHM6Ly9leGFtcGxlLmNvbS9zY2ltL2V2ZW50L3Bhc3N3b3JkUmVzZXRFeH
+          QiOnsicmVzZXRBdHRlbXB0cyI6NX19fQ."
+        }
+      }
+      
+      Figure 1: Example of SET Transmission
 
 In the above example, the Transmitter is sending 2 SETs to the Receiver.
 
-   {
-     "sets": {
-       "4d3559ec67504aaba65d40b0363faad8":
-       "eyJhbGciOiJub25lIn0.
-       eyJqdGkiOiI0ZDM1NTllYzY3NTA0YWFiYTY1ZDQwYjAzNjNmYWFkOCIsImlhdC
-       I6MTQ1ODQ5NjQwNCwiaXNzIjoiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tIiwi
-       YXVkIjpbImh0dHBzOi8vc2NpbS5leGFtcGxlLmNvbS9GZWVkcy85OGQ1MjQ2MW
-       ZhNWJiYzg3OTU5M2I3NzU0IiwiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tL0Zl
-       ZWRzLzVkNzYwNDUxNmIxZDA4NjQxZDc2NzZlZTciXSwiZXZlbnRzIjp7InVybj
-       ppZXRmOnBhcmFtczpzY2ltOmV2ZW50OmNyZWF0ZSI6eyJyZWYiOiJodHRwczov
-       L3NjaW0uZXhhbXBsZS5jb20vVXNlcnMvNDRmNjE0MmRmOTZiZDZhYjYxZTc1Mj
-       FkOSIsImF0dHJpYnV0ZXMiOlsiaWQiLCJuYW1lIiwidXNlck5hbWUiLCJwYXNz
-       d29yZCIsImVtYWlscyJdfX19.",
-       "3d0c3cf797584bd193bd0fb1bd4e7d30":
-       "eyJhbGciOiJub25lIn0.
-       eyJqdGkiOiIzZDBjM2NmNzk3NTg0YmQxOTNiZDBmYjFiZDRlN2QzMCIsImlhdC
-       I6MTQ1ODQ5NjAyNSwiaXNzIjoiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tIiwi
-       YXVkIjpbImh0dHBzOi8vamh1Yi5leGFtcGxlLmNvbS9GZWVkcy85OGQ1MjQ2MW
-       ZhNWJiYzg3OTU5M2I3NzU0IiwiaHR0cHM6Ly9qaHViLmV4YW1wbGUuY29tL0Zl
-       ZWRzLzVkNzYwNDUxNmIxZDA4NjQxZDc2NzZlZTciXSwic3ViIjoiaHR0cHM6Ly
-       9zY2ltLmV4YW1wbGUuY29tL1VzZXJzLzQ0ZjYxNDJkZjk2YmQ2YWI2MWU3NTIx
-       ZDkiLCJldmVudHMiOnsidXJuOmlldGY6cGFyYW1zOnNjaW06ZXZlbnQ6cGFzc3
-       dvcmRSZXNldCI6eyJpZCI6IjQ0ZjYxNDJkZjk2YmQ2YWI2MWU3NTIxZDkifSwi
-       aHR0cHM6Ly9leGFtcGxlLmNvbS9zY2ltL2V2ZW50L3Bhc3N3b3JkUmVzZXRFeH
-       QiOnsicmVzZXRBdHRlbXB0cyI6NX19fQ."
-     },
-     "moreAvailable": 10
+      {
+        "sets": {
+          "4d3559ec67504aaba65d40b0363faad8":
+          "eyJhbGciOiJub25lIn0.
+          eyJqdGkiOiI0ZDM1NTllYzY3NTA0YWFiYTY1ZDQwYjAzNjNmYWFkOCIsImlhdC
+          I6MTQ1ODQ5NjQwNCwiaXNzIjoiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tIiwi
+          YXVkIjpbImh0dHBzOi8vc2NpbS5leGFtcGxlLmNvbS9GZWVkcy85OGQ1MjQ2MW
+          ZhNWJiYzg3OTU5M2I3NzU0IiwiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tL0Zl
+          ZWRzLzVkNzYwNDUxNmIxZDA4NjQxZDc2NzZlZTciXSwiZXZlbnRzIjp7InVybj
+          ppZXRmOnBhcmFtczpzY2ltOmV2ZW50OmNyZWF0ZSI6eyJyZWYiOiJodHRwczov
+          L3NjaW0uZXhhbXBsZS5jb20vVXNlcnMvNDRmNjE0MmRmOTZiZDZhYjYxZTc1Mj
+          FkOSIsImF0dHJpYnV0ZXMiOlsiaWQiLCJuYW1lIiwidXNlck5hbWUiLCJwYXNz
+          d29yZCIsImVtYWlscyJdfX19.",
+          "3d0c3cf797584bd193bd0fb1bd4e7d30":
+          "eyJhbGciOiJub25lIn0.
+          eyJqdGkiOiIzZDBjM2NmNzk3NTg0YmQxOTNiZDBmYjFiZDRlN2QzMCIsImlhdC
+          I6MTQ1ODQ5NjAyNSwiaXNzIjoiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tIiwi
+          YXVkIjpbImh0dHBzOi8vamh1Yi5leGFtcGxlLmNvbS9GZWVkcy85OGQ1MjQ2MW
+          ZhNWJiYzg3OTU5M2I3NzU0IiwiaHR0cHM6Ly9qaHViLmV4YW1wbGUuY29tL0Zl
+          ZWRzLzVkNzYwNDUxNmIxZDA4NjQxZDc2NzZlZTciXSwic3ViIjoiaHR0cHM6Ly
+          9zY2ltLmV4YW1wbGUuY29tL1VzZXJzLzQ0ZjYxNDJkZjk2YmQ2YWI2MWU3NTIx
+          ZDkiLCJldmVudHMiOnsidXJuOmlldGY6cGFyYW1zOnNjaW06ZXZlbnQ6cGFzc3
+          dvcmRSZXNldCI6eyJpZCI6IjQ0ZjYxNDJkZjk2YmQ2YWI2MWU3NTIxZDkifSwi
+          aHR0cHM6Ly9leGFtcGxlLmNvbS9zY2ltL2V2ZW50L3Bhc3N3b3JkUmVzZXRFeH
+          QiOnsicmVzZXRBdHRlbXB0cyI6NX19fQ."
+        },
+        "moreAvailable": 10
 
-   }
-   Figure 2: Example of SET Transmission with "moreAvailable"
+      }
+
+      Figure 2: Example of SET Transmission with "moreAvailable"
 
 In the above example, the Transmitter is sending 2 SETs to the Receiver. The Tranmitter is also communicating to the reciver the outstanding SETs to be transmitted.
 
-   {
-     "sets": {},
-   }
-   Figure 3: Example of empty SET transmission
+      {
+        "sets": {},
+      }
+
+      Figure 3: Example of empty SET transmission
 
 In the above example, the Transmitter is sending zero SETs to the Receiver. This placeholder/empty request provides the Receiver to respond back with ack/err for previously transmitted SETs
 
@@ -179,32 +182,37 @@ OPTIONAL. An explanation of why the SET failed to be processed
 
 If the Receiver is successful in processing the request, it MUST return the HTTP status code 200 (OK). The response MUST have the content-type "application/json" and the response MUST include a Communication Object Section X.
 
-   HTTP/1.1 200 OK
-   Content-type: application/json
+      HTTP/1.1 200 OK
+      Content-type: application/json
 
-   {
-     "ack": [
-       "3d0c3cf797584bd193bd0fb1bd4e7d30"
-     ]
-   }
-   Figure 3: Example of SET Transmission response with ack
+      {
+        "ack": [
+          "3d0c3cf797584bd193bd0fb1bd4e7d30"
+        ]
+      }
+
+      Figure 3: Example of SET Transmission response with ack
 
 In the above example, the Receiver acknowledges one of the SETs it previously received. There are no errors reported by the Receiver.
 
-    {
-     "ack": [
-       "f52901c4-3996-11ef-9454-0242ac120002",
-       "0636e274-3997-11ef-9454-0242ac120002",
-       "d563c724-79a0-4ff0-ba41-657fa5e2cb11"
-     ],
-     "setErrs": {
-       "5c436b19-0958-4367-b408-2dd542606d3b" : {
-         "err": "invalid subject",
-         "description": "subject format not supported"
-       }
-     }
-    }
-   Figure 3: Example of SET Transmission response, with ack and errors
+      HTTP/1.1 200 OK
+      Content-type: application/json
+
+      {
+         "ack": [
+          "f52901c4-3996-11ef-9454-0242ac120002",
+          "0636e274-3997-11ef-9454-0242ac120002",
+          "d563c724-79a0-4ff0-ba41-657fa5e2cb11"
+         ],
+         "setErrs": {
+          "5c436b19-0958-4367-b408-2dd542606d3b" : {
+            "err": "invalid subject",
+            "description": "subject format not supported"
+          }
+         }
+      }
+
+      Figure 4: Example of SET Transmission response, with ack and errors
 
 In the above example, the Receiver acknowledges three of the SETs it previously received. There are errors reported by the Receiver for acklowledging one SET.
 
