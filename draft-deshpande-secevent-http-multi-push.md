@@ -64,7 +64,7 @@ Multi-push specification will handle all the usecases and scenarios for the {{RF
 
 Similar to {{RFC8935}} this specification makes mechanism for exchanging configuration metadata such as endpoint URLs, cryptographic keys, and possible implementation constraints such as buffer size limitations between the transmitter and recipient is out of scope.
 
-# Multi-Push Endpoint 
+# Multi-Push Endpoint
 
 Each Receiver that supports this specification MUST support a "multi-push" endpoint. This endpoint MUST be capable of serving HTTP [RFC9110] requests. This endpoint MUST be TLS {{RFC8446}} enabled and MUST reject any communication not using TLS.
 
@@ -88,7 +88,6 @@ A JSON boolean value that indicates if more unacknowledged SETs are available to
 
 The following is a non-normative example of a Communication Object
 
-   ```
    {
      "sets": {
        "4d3559ec67504aaba65d40b0363faad8":
@@ -116,12 +115,10 @@ The following is a non-normative example of a Communication Object
        QiOnsicmVzZXRBdHRlbXB0cyI6NX19fQ."
      }
    }
-   ```
-Figure 1: Example of SET Transmission
+   Figure 1: Example of SET Transmission
 
 In the above example, the Transmitter is sending 2 SETs to the Receiver.
 
-   ```
    {
      "sets": {
        "4d3559ec67504aaba65d40b0363faad8":
@@ -151,18 +148,14 @@ In the above example, the Transmitter is sending 2 SETs to the Receiver.
      "moreAvailable": 10
 
    }
-   ```
-Figure 2: Example of SET Transmission with "moreAvailable"
+   Figure 2: Example of SET Transmission with "moreAvailable"
 
 In the above example, the Transmitter is sending 2 SETs to the Receiver. The Tranmitter is also communicating to the reciver the outstanding SETs to be transmitted.
 
-
-```
-{
-  "sets": {},
-}
-```
-Figure 2: Example of empty SET transmission
+   {
+     "sets": {},
+   }
+   Figure 3: Example of empty SET transmission
 
 In the above example, the Transmitter is sending zero SETs to the Receiver. This placeholder/empty request provides the Receiver to respond back with ack/err for previously transmitted SETs
 
@@ -186,7 +179,6 @@ OPTIONAL. An explanation of why the SET failed to be processed
 
 If the Receiver is successful in processing the request, it MUST return the HTTP status code 200 (OK). The response MUST have the content-type "application/json" and the response MUST include a Communication Object Section X.
 
-   ```
    HTTP/1.1 200 OK
    Content-type: application/json
 
@@ -195,12 +187,10 @@ If the Receiver is successful in processing the request, it MUST return the HTTP
        "3d0c3cf797584bd193bd0fb1bd4e7d30"
      ]
    }
-   ```
-Figure 3: Example of SET Transmission response with ack
+   Figure 3: Example of SET Transmission response with ack
 
 In the above example, the Receiver acknowledges one of the SETs it previously received. There are no errors reported by the Receiver.
 
-   ```
     {
      "ack": [
        "f52901c4-3996-11ef-9454-0242ac120002",
@@ -214,8 +204,7 @@ In the above example, the Receiver acknowledges one of the SETs it previously re
        }
      }
     }
-   ```
-Figure 3: Example of SET Transmission response, with ack and errors
+   Figure 3: Example of SET Transmission response, with ack and errors
 
 In the above example, the Receiver acknowledges three of the SETs it previously received. There are errors reported by the Receiver for acklowledging one SET.
 
