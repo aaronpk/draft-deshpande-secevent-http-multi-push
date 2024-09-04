@@ -115,7 +115,7 @@ The following is a non-normative example of a Communication Object
           QiOnsicmVzZXRBdHRlbXB0cyI6NX19fQ."
         }
       }
-      
+
       Figure 1: Example of SET Transmission
 
 In the above example, the Transmitter is sending 2 SETs to the Receiver.
