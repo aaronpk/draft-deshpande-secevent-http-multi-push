@@ -92,12 +92,12 @@ Table of Contents
    the receiver.  This specification builds onto [RFC8935] to transmit
    multiple SETs to the receiver in a single POST call.
 
-   Multi-push SET delivery is intended to help in following scenarios: -
+   Multi-push SET delivery is intended to help in following scenarios: *
    The transmitter of the SET has multiple outstanding SETs to be
-   communicated to the receiver - The transmitter wants to reduce the
+   communicated to the receiver * The transmitter wants to reduce the
    number of outbound calls to the same receiver to optimize
    performance, avoid being ratelimited when number of SETs to be
-   communicated is high - The receiver wants to optimize processing
+   communicated is high * The receiver wants to optimize processing
    multiple SETs
 
    Multi-push specification will handle all the usecases and scenarios
@@ -123,7 +123,7 @@ Table of Contents
 2.1.  Transmitting SETs
 
    A Transmitter may initiate communication with the receiver in order
-   to: - Send SETs to the Receiver - Recive acknowledgement of the SETs
+   to: * Send SETs to the Receiver * Recive acknowledgement of the SETs
    in response
 
    The body of this request is of the content type "application/json".
