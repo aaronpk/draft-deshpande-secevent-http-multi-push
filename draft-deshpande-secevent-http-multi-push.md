@@ -130,7 +130,7 @@ The following is a non-normative example of a Communication Object
         }
       }
 
-      Figure 1: Example of SET Transmission
+            Figure 1: Example of SET Transmission
 
 In the above example, the Transmitter is sending 2 SETs to the Receiver.
 
@@ -164,7 +164,7 @@ In the above example, the Transmitter is sending 2 SETs to the Receiver.
 
       }
 
-      Figure 2: Example of SET Transmission with "moreAvailable"
+            Figure 2: Example of SET Transmission with "moreAvailable"
 
 In the above example, the Transmitter is sending 2 SETs to the Receiver. The Tranmitter is also communicating to the receiver the outstanding SETs to be transmitted.
 
@@ -172,7 +172,7 @@ In the above example, the Transmitter is sending 2 SETs to the Receiver. The Tra
         "sets": {},
       }
 
-      Figure 3: Example of empty SET transmission
+            Figure 3: Example of empty SET transmission
 
 In the above example, the Transmitter is sending zero SETs to the Receiver. This placeholder/empty request provides the Receiver to respond back with ack/err for previously transmitted SETs
 
@@ -205,7 +205,7 @@ If the Receiver is successful in processing the request, it MUST return the HTTP
         ]
       }
 
-      Figure 3: Example of SET Transmission response with ack
+            Figure 3: Example of SET Transmission response with ack
 
 In the above example, the Receiver acknowledges one of the SETs it previously received. There are no errors reported by the Receiver.
 
@@ -226,7 +226,7 @@ In the above example, the Receiver acknowledges one of the SETs it previously re
          }
       }
 
-      Figure 4: Example of SET Transmission response, with ack and errors
+            Figure 4: Example of SET Transmission response, with ack and errors
 
 In the above example, the Receiver acknowledges three of the SETs it previously received. There are errors reported by the Receiver for acklowledging one SET.
 
