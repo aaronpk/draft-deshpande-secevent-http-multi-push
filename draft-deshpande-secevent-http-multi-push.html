@@ -1218,70 +1218,86 @@ failed transmission via the HTTP response.<a href="#section-abstract-1" class="p
 <p id="section-2.1-4"><code>moreAvailable</code>
 A JSON boolean value that indicates if more unacknowledged SETs are available to be returned. This member <span class="bcp14">MAY</span> be omitted, with the meaning being the same as including it with the boolean value false.<a href="#section-2.1-4" class="pilcrow">¶</a></p>
 <p id="section-2.1-5">The following is a non-normative example of a Communication Object<a href="#section-2.1-5" class="pilcrow">¶</a></p>
-<p id="section-2.1-6">{
-     "sets": {
-       "4d3559ec67504aaba65d40b0363faad8":
-       "eyJhbGciOiJub25lIn0.
-       eyJqdGkiOiI0ZDM1NTllYzY3NTA0YWFiYTY1ZDQwYjAzNjNmYWFkOCIsImlhdC
-       I6MTQ1ODQ5NjQwNCwiaXNzIjoiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tIiwi
-       YXVkIjpbImh0dHBzOi8vc2NpbS5leGFtcGxlLmNvbS9GZWVkcy85OGQ1MjQ2MW
-       ZhNWJiYzg3OTU5M2I3NzU0IiwiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tL0Zl
-       ZWRzLzVkNzYwNDUxNmIxZDA4NjQxZDc2NzZlZTciXSwiZXZlbnRzIjp7InVybj
-       ppZXRmOnBhcmFtczpzY2ltOmV2ZW50OmNyZWF0ZSI6eyJyZWYiOiJodHRwczov
-       L3NjaW0uZXhhbXBsZS5jb20vVXNlcnMvNDRmNjE0MmRmOTZiZDZhYjYxZTc1Mj
-       FkOSIsImF0dHJpYnV0ZXMiOlsiaWQiLCJuYW1lIiwidXNlck5hbWUiLCJwYXNz
-       d29yZCIsImVtYWlscyJdfX19.",
-       "3d0c3cf797584bd193bd0fb1bd4e7d30":
-       "eyJhbGciOiJub25lIn0.
-       eyJqdGkiOiIzZDBjM2NmNzk3NTg0YmQxOTNiZDBmYjFiZDRlN2QzMCIsImlhdC
-       I6MTQ1ODQ5NjAyNSwiaXNzIjoiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tIiwi
-       YXVkIjpbImh0dHBzOi8vamh1Yi5leGFtcGxlLmNvbS9GZWVkcy85OGQ1MjQ2MW
-       ZhNWJiYzg3OTU5M2I3NzU0IiwiaHR0cHM6Ly9qaHViLmV4YW1wbGUuY29tL0Zl
-       ZWRzLzVkNzYwNDUxNmIxZDA4NjQxZDc2NzZlZTciXSwic3ViIjoiaHR0cHM6Ly
-       9zY2ltLmV4YW1wbGUuY29tL1VzZXJzLzQ0ZjYxNDJkZjk2YmQ2YWI2MWU3NTIx
-       ZDkiLCJldmVudHMiOnsidXJuOmlldGY6cGFyYW1zOnNjaW06ZXZlbnQ6cGFzc3
-       dvcmRSZXNldCI6eyJpZCI6IjQ0ZjYxNDJkZjk2YmQ2YWI2MWU3NTIxZDkifSwi
-       aHR0cHM6Ly9leGFtcGxlLmNvbS9zY2ltL2V2ZW50L3Bhc3N3b3JkUmVzZXRFeH
-       QiOnsicmVzZXRBdHRlbXB0cyI6NX19fQ."
-     }
-   }
-   Figure 1: Example of SET Transmission<a href="#section-2.1-6" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-2.1-6">
+<pre>
+  {
+    "sets": {
+      "4d3559ec67504aaba65d40b0363faad8":
+      "eyJhbGciOiJub25lIn0.
+      eyJqdGkiOiI0ZDM1NTllYzY3NTA0YWFiYTY1ZDQwYjAzNjNmYWFkOCIsImlhdC
+      I6MTQ1ODQ5NjQwNCwiaXNzIjoiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tIiwi
+      YXVkIjpbImh0dHBzOi8vc2NpbS5leGFtcGxlLmNvbS9GZWVkcy85OGQ1MjQ2MW
+      ZhNWJiYzg3OTU5M2I3NzU0IiwiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tL0Zl
+      ZWRzLzVkNzYwNDUxNmIxZDA4NjQxZDc2NzZlZTciXSwiZXZlbnRzIjp7InVybj
+      ppZXRmOnBhcmFtczpzY2ltOmV2ZW50OmNyZWF0ZSI6eyJyZWYiOiJodHRwczov
+      L3NjaW0uZXhhbXBsZS5jb20vVXNlcnMvNDRmNjE0MmRmOTZiZDZhYjYxZTc1Mj
+      FkOSIsImF0dHJpYnV0ZXMiOlsiaWQiLCJuYW1lIiwidXNlck5hbWUiLCJwYXNz
+      d29yZCIsImVtYWlscyJdfX19.",
+      "3d0c3cf797584bd193bd0fb1bd4e7d30":
+      "eyJhbGciOiJub25lIn0.
+      eyJqdGkiOiIzZDBjM2NmNzk3NTg0YmQxOTNiZDBmYjFiZDRlN2QzMCIsImlhdC
+      I6MTQ1ODQ5NjAyNSwiaXNzIjoiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tIiwi
+      YXVkIjpbImh0dHBzOi8vamh1Yi5leGFtcGxlLmNvbS9GZWVkcy85OGQ1MjQ2MW
+      ZhNWJiYzg3OTU5M2I3NzU0IiwiaHR0cHM6Ly9qaHViLmV4YW1wbGUuY29tL0Zl
+      ZWRzLzVkNzYwNDUxNmIxZDA4NjQxZDc2NzZlZTciXSwic3ViIjoiaHR0cHM6Ly
+      9zY2ltLmV4YW1wbGUuY29tL1VzZXJzLzQ0ZjYxNDJkZjk2YmQ2YWI2MWU3NTIx
+      ZDkiLCJldmVudHMiOnsidXJuOmlldGY6cGFyYW1zOnNjaW06ZXZlbnQ6cGFzc3
+      dvcmRSZXNldCI6eyJpZCI6IjQ0ZjYxNDJkZjk2YmQ2YWI2MWU3NTIxZDkifSwi
+      aHR0cHM6Ly9leGFtcGxlLmNvbS9zY2ltL2V2ZW50L3Bhc3N3b3JkUmVzZXRFeH
+      QiOnsicmVzZXRBdHRlbXB0cyI6NX19fQ."
+    }
+  }
+
+  Figure 1: Example of SET Transmission
+</pre><a href="#section-2.1-6" class="pilcrow">¶</a>
+</div>
 <p id="section-2.1-7">In the above example, the Transmitter is sending 2 SETs to the Receiver.<a href="#section-2.1-7" class="pilcrow">¶</a></p>
-<p id="section-2.1-8">{
-     "sets": {
-       "4d3559ec67504aaba65d40b0363faad8":
-       "eyJhbGciOiJub25lIn0.
-       eyJqdGkiOiI0ZDM1NTllYzY3NTA0YWFiYTY1ZDQwYjAzNjNmYWFkOCIsImlhdC
-       I6MTQ1ODQ5NjQwNCwiaXNzIjoiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tIiwi
-       YXVkIjpbImh0dHBzOi8vc2NpbS5leGFtcGxlLmNvbS9GZWVkcy85OGQ1MjQ2MW
-       ZhNWJiYzg3OTU5M2I3NzU0IiwiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tL0Zl
-       ZWRzLzVkNzYwNDUxNmIxZDA4NjQxZDc2NzZlZTciXSwiZXZlbnRzIjp7InVybj
-       ppZXRmOnBhcmFtczpzY2ltOmV2ZW50OmNyZWF0ZSI6eyJyZWYiOiJodHRwczov
-       L3NjaW0uZXhhbXBsZS5jb20vVXNlcnMvNDRmNjE0MmRmOTZiZDZhYjYxZTc1Mj
-       FkOSIsImF0dHJpYnV0ZXMiOlsiaWQiLCJuYW1lIiwidXNlck5hbWUiLCJwYXNz
-       d29yZCIsImVtYWlscyJdfX19.",
-       "3d0c3cf797584bd193bd0fb1bd4e7d30":
-       "eyJhbGciOiJub25lIn0.
-       eyJqdGkiOiIzZDBjM2NmNzk3NTg0YmQxOTNiZDBmYjFiZDRlN2QzMCIsImlhdC
-       I6MTQ1ODQ5NjAyNSwiaXNzIjoiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tIiwi
-       YXVkIjpbImh0dHBzOi8vamh1Yi5leGFtcGxlLmNvbS9GZWVkcy85OGQ1MjQ2MW
-       ZhNWJiYzg3OTU5M2I3NzU0IiwiaHR0cHM6Ly9qaHViLmV4YW1wbGUuY29tL0Zl
-       ZWRzLzVkNzYwNDUxNmIxZDA4NjQxZDc2NzZlZTciXSwic3ViIjoiaHR0cHM6Ly
-       9zY2ltLmV4YW1wbGUuY29tL1VzZXJzLzQ0ZjYxNDJkZjk2YmQ2YWI2MWU3NTIx
-       ZDkiLCJldmVudHMiOnsidXJuOmlldGY6cGFyYW1zOnNjaW06ZXZlbnQ6cGFzc3
-       dvcmRSZXNldCI6eyJpZCI6IjQ0ZjYxNDJkZjk2YmQ2YWI2MWU3NTIxZDkifSwi
-       aHR0cHM6Ly9leGFtcGxlLmNvbS9zY2ltL2V2ZW50L3Bhc3N3b3JkUmVzZXRFeH
-       QiOnsicmVzZXRBdHRlbXB0cyI6NX19fQ."
-     },
-     "moreAvailable": 10<a href="#section-2.1-8" class="pilcrow">¶</a></p>
-<p id="section-2.1-9">}
-   Figure 2: Example of SET Transmission with "moreAvailable"<a href="#section-2.1-9" class="pilcrow">¶</a></p>
-<p id="section-2.1-10">In the above example, the Transmitter is sending 2 SETs to the Receiver. The Tranmitter is also communicating to the reciver the outstanding SETs to be transmitted.<a href="#section-2.1-10" class="pilcrow">¶</a></p>
-<p id="section-2.1-11">{
-     "sets": {},
-   }
-   Figure 3: Example of empty SET transmission<a href="#section-2.1-11" class="pilcrow">¶</a></p>
-<p id="section-2.1-12">In the above example, the Transmitter is sending zero SETs to the Receiver. This placeholder/empty request provides the Receiver to respond back with ack/err for previously transmitted SETs<a href="#section-2.1-12" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-2.1-8">
+<pre>
+  {
+    "sets": {
+      "4d3559ec67504aaba65d40b0363faad8":
+      "eyJhbGciOiJub25lIn0.
+      eyJqdGkiOiI0ZDM1NTllYzY3NTA0YWFiYTY1ZDQwYjAzNjNmYWFkOCIsImlhdC
+      I6MTQ1ODQ5NjQwNCwiaXNzIjoiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tIiwi
+      YXVkIjpbImh0dHBzOi8vc2NpbS5leGFtcGxlLmNvbS9GZWVkcy85OGQ1MjQ2MW
+      ZhNWJiYzg3OTU5M2I3NzU0IiwiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tL0Zl
+      ZWRzLzVkNzYwNDUxNmIxZDA4NjQxZDc2NzZlZTciXSwiZXZlbnRzIjp7InVybj
+      ppZXRmOnBhcmFtczpzY2ltOmV2ZW50OmNyZWF0ZSI6eyJyZWYiOiJodHRwczov
+      L3NjaW0uZXhhbXBsZS5jb20vVXNlcnMvNDRmNjE0MmRmOTZiZDZhYjYxZTc1Mj
+      FkOSIsImF0dHJpYnV0ZXMiOlsiaWQiLCJuYW1lIiwidXNlck5hbWUiLCJwYXNz
+      d29yZCIsImVtYWlscyJdfX19.",
+      "3d0c3cf797584bd193bd0fb1bd4e7d30":
+      "eyJhbGciOiJub25lIn0.
+      eyJqdGkiOiIzZDBjM2NmNzk3NTg0YmQxOTNiZDBmYjFiZDRlN2QzMCIsImlhdC
+      I6MTQ1ODQ5NjAyNSwiaXNzIjoiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tIiwi
+      YXVkIjpbImh0dHBzOi8vamh1Yi5leGFtcGxlLmNvbS9GZWVkcy85OGQ1MjQ2MW
+      ZhNWJiYzg3OTU5M2I3NzU0IiwiaHR0cHM6Ly9qaHViLmV4YW1wbGUuY29tL0Zl
+      ZWRzLzVkNzYwNDUxNmIxZDA4NjQxZDc2NzZlZTciXSwic3ViIjoiaHR0cHM6Ly
+      9zY2ltLmV4YW1wbGUuY29tL1VzZXJzLzQ0ZjYxNDJkZjk2YmQ2YWI2MWU3NTIx
+      ZDkiLCJldmVudHMiOnsidXJuOmlldGY6cGFyYW1zOnNjaW06ZXZlbnQ6cGFzc3
+      dvcmRSZXNldCI6eyJpZCI6IjQ0ZjYxNDJkZjk2YmQ2YWI2MWU3NTIxZDkifSwi
+      aHR0cHM6Ly9leGFtcGxlLmNvbS9zY2ltL2V2ZW50L3Bhc3N3b3JkUmVzZXRFeH
+      QiOnsicmVzZXRBdHRlbXB0cyI6NX19fQ."
+    },
+    "moreAvailable": 10
+
+  }
+
+  Figure 2: Example of SET Transmission with "moreAvailable"
+</pre><a href="#section-2.1-8" class="pilcrow">¶</a>
+</div>
+<p id="section-2.1-9">In the above example, the Transmitter is sending 2 SETs to the Receiver. The Tranmitter is also communicating to the reciver the outstanding SETs to be transmitted.<a href="#section-2.1-9" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-2.1-10">
+<pre>
+  {
+    "sets": {},
+  }
+
+  Figure 3: Example of empty SET transmission
+</pre><a href="#section-2.1-10" class="pilcrow">¶</a>
+</div>
+<p id="section-2.1-11">In the above example, the Transmitter is sending zero SETs to the Receiver. This placeholder/empty request provides the Receiver to respond back with ack/err for previously transmitted SETs<a href="#section-2.1-11" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="response-communication">
@@ -1304,33 +1320,44 @@ A JSON boolean value that indicates if more unacknowledged SETs are available to
 <a href="#section-2.2.1" class="section-number selfRef">2.2.1. </a><a href="#name-success-response" class="section-name selfRef">Success Response</a>
           </h4>
 <p id="section-2.2.1-1">If the Receiver is successful in processing the request, it <span class="bcp14">MUST</span> return the HTTP status code 200 (OK). The response <span class="bcp14">MUST</span> have the content-type "application/json" and the response <span class="bcp14">MUST</span> include a Communication Object Section X.<a href="#section-2.2.1-1" class="pilcrow">¶</a></p>
-<p id="section-2.2.1-2">HTTP/1.1 200 OK
-   Content-type: application/json<a href="#section-2.2.1-2" class="pilcrow">¶</a></p>
-<p id="section-2.2.1-3">{
-     "ack": [
-       "3d0c3cf797584bd193bd0fb1bd4e7d30"
-     ]
-   }
-   Figure 3: Example of SET Transmission response with ack<a href="#section-2.2.1-3" class="pilcrow">¶</a></p>
-<p id="section-2.2.1-4">In the above example, the Receiver acknowledges one of the SETs it previously received. There are no errors reported by the Receiver.<a href="#section-2.2.1-4" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-2.2.1-5">
+<div class="alignLeft art-text artwork" id="section-2.2.1-2">
 <pre>
-{
- "ack": [
-   "f52901c4-3996-11ef-9454-0242ac120002",
-   "0636e274-3997-11ef-9454-0242ac120002",
-   "d563c724-79a0-4ff0-ba41-657fa5e2cb11"
- ],
- "setErrs": {
-   "5c436b19-0958-4367-b408-2dd542606d3b" : {
-     "err": "invalid subject",
-     "description": "subject format not supported"
-   }
- }
-}    Figure 3: Example of SET Transmission response, with ack and errors
-</pre><a href="#section-2.2.1-5" class="pilcrow">¶</a>
+  HTTP/1.1 200 OK
+  Content-type: application/json
+
+  {
+    "ack": [
+      "3d0c3cf797584bd193bd0fb1bd4e7d30"
+    ]
+  }
+
+  Figure 3: Example of SET Transmission response with ack
+</pre><a href="#section-2.2.1-2" class="pilcrow">¶</a>
 </div>
-<p id="section-2.2.1-6">In the above example, the Receiver acknowledges three of the SETs it previously received. There are errors reported by the Receiver for acklowledging one SET.<a href="#section-2.2.1-6" class="pilcrow">¶</a></p>
+<p id="section-2.2.1-3">In the above example, the Receiver acknowledges one of the SETs it previously received. There are no errors reported by the Receiver.<a href="#section-2.2.1-3" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-2.2.1-4">
+<pre>
+  HTTP/1.1 200 OK
+  Content-type: application/json
+
+  {
+     "ack": [
+      "f52901c4-3996-11ef-9454-0242ac120002",
+      "0636e274-3997-11ef-9454-0242ac120002",
+      "d563c724-79a0-4ff0-ba41-657fa5e2cb11"
+     ],
+     "setErrs": {
+      "5c436b19-0958-4367-b408-2dd542606d3b" : {
+        "err": "invalid subject",
+        "description": "subject format not supported"
+      }
+     }
+  }
+
+  Figure 4: Example of SET Transmission response, with ack and errors
+</pre><a href="#section-2.2.1-4" class="pilcrow">¶</a>
+</div>
+<p id="section-2.2.1-5">In the above example, the Receiver acknowledges three of the SETs it previously received. There are errors reported by the Receiver for acklowledging one SET.<a href="#section-2.2.1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="error-response">
