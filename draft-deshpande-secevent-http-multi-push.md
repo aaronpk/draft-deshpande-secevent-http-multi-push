@@ -32,6 +32,11 @@ author:
     email: aaron@parecki.com
 
 normative:
+   RFC8417:
+   RFC7231:
+   RFC8935:
+   RFC9110:
+   RFC8446:
 
 informative:
 
@@ -75,7 +80,7 @@ A Transmitter may initiate communication with the receiver in order to:
 The body of this request is of the content type "application/json". It MAY contains the following fields:
 
 sets
-OPTIONAL. A JSON object containing key-value pairs in which the key of a field is a string that contains the jti value of the SET that is specified in the value of the field. This field MAY be omitted to indicate that no SETs are being delivered by the initiator in this communication.
+OPTIONAL. A JSON object containing key-value pairs in which the key of a field is a string that contains the jti value of the SET that is specified in the value of the field. This field MAY be omitted to indicate that no SETs are being delivered by the initiator in this communication. The Transmitter SHOULD limit 20 SETs in the sets.
 
 moreAvailable
 A JSON boolean value that indicates if more unacknowledged SETs are available to be returned. This member MAY be omitted, with the meaning being the same as including it with the boolean value false.
@@ -216,7 +221,7 @@ In the above example, the Receiver acknowledges three of the SETs it previously 
 
 ### Error Response
 
-The Responder MUST respond with an error response if it is unable to process the request. The error response MUST include the appropriate error code as described in Section 2.4 of DeliveryPush [RFC8935].
+The receiver MUST respond with an error response if it is unable to process the request. The error response MUST include the appropriate error code as described in Section 2.4 of DeliveryPush [RFC8935].
 
 # Conventions and Definitions
 
