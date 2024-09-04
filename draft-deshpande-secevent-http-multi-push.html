@@ -1190,9 +1190,9 @@ failed transmission via the HTTP response.<a href="#section-abstract-1" class="p
       </h2>
 <p id="section-1-1">This specification defines a mechanism by which a transmitter of a Security Event Token (SET) <span>[<a href="#RFC8417" class="cite xref">RFC8417</a>]</span> can deliver multiple SETs to an intended SET Recipient via HTTP POST <span>[<a href="#RFC7231" class="cite xref">RFC7231</a>]</span> over TLS in a single POST call. <span>[<a href="#RFC8935" class="cite xref">RFC8935</a>]</span> focuses on the delivery of the single SET to the receiver. This specification builds onto <span>[<a href="#RFC8935" class="cite xref">RFC8935</a>]</span> to transmit multiple SETs to the receiver in a single POST call.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">Multi-push SET delivery is intended to help in following scenarios:
-   - The transmitter of the SET has multiple outstanding SETs to be communicated to the receiver
-   - The transmitter wants to reduce the number of outbound calls to the same receiver to optimize performance, avoid being ratelimited when number of SETs to be communicated is high
-   - The receiver wants to optimize processing multiple SETs<a href="#section-1-2" class="pilcrow">¶</a></p>
+  - The transmitter of the SET has multiple outstanding SETs to be communicated to the receiver
+  - The transmitter wants to reduce the number of outbound calls to the same receiver to optimize performance, avoid being ratelimited when number of SETs to be communicated is high
+  - The receiver wants to optimize processing multiple SETs<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">Multi-push specification will handle all the usecases and scenarios for the <span>[<a href="#RFC8935" class="cite xref">RFC8935</a>]</span> and make it more extensible to support multiple SETs per one outbound POST call.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-4">Similar to <span>[<a href="#RFC8935" class="cite xref">RFC8935</a>]</span> this specification makes mechanism for exchanging configuration metadata such as endpoint URLs, cryptographic keys, and possible implementation constraints such as buffer size limitations between the transmitter and recipient is out of scope.<a href="#section-1-4" class="pilcrow">¶</a></p>
 </section>
@@ -1210,8 +1210,8 @@ failed transmission via the HTTP response.<a href="#section-abstract-1" class="p
 <a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-transmitting-sets" class="section-name selfRef">Transmitting SETs</a>
         </h3>
 <p id="section-2.1-1">A Transmitter may initiate communication with the receiver in order to:
-   - Send SETs to the Receiver
-   - Recive acknowledgement of the SETs in response<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+  - Send SETs to the Receiver
+  - Recive acknowledgement of the SETs in response<a href="#section-2.1-1" class="pilcrow">¶</a></p>
 <p id="section-2.1-2">The body of this request is of the content type "application/json". It <span class="bcp14">MAY</span> contains the following fields:<a href="#section-2.1-2" class="pilcrow">¶</a></p>
 <p id="section-2.1-3"><code>sets</code>
           <span class="bcp14">OPTIONAL</span>. A JSON object containing key-value pairs in which the key of a field is a string that contains the jti value of the SET that is specified in the value of the field. This field <span class="bcp14">MAY</span> be omitted to indicate that no SETs are being delivered by the initiator in this communication. The Transmitter <span class="bcp14">SHOULD</span> limit 20 SETs in the sets.<a href="#section-2.1-3" class="pilcrow">¶</a></p>
