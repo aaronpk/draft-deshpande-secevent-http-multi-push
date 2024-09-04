@@ -38,6 +38,7 @@ normative:
    RFC9110:
    RFC8446:
    I-D.ietf-oauth-resource-metadata:
+   RFC8259:
 
 informative:
 
