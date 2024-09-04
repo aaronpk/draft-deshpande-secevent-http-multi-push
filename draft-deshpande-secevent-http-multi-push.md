@@ -37,6 +37,7 @@ normative:
    RFC8935:
    RFC9110:
    RFC8446:
+   I-D.ietf-oauth-resource-metadata:
 
 informative:
 
@@ -56,9 +57,10 @@ failed transmission via the HTTP response.
 This specification defines a mechanism by which a transmitter of a Security Event Token (SET) {{RFC8417}} can deliver multiple SETs to an intended SET Recipient via HTTP POST {{RFC7231}} over TLS in a single POST call. {{RFC8935}} focuses on the delivery of the single SET to the receiver. This specification builds onto {{RFC8935}} to transmit multiple SETs to the receiver in a single POST call.
 
 Multi-push SET delivery is intended to help in following scenarios:
- * The transmitter of the SET has multiple outstanding SETs to be communicated to the receiver
- * The transmitter wants to reduce the number of outbound calls to the same receiver to optimize performance, avoid being ratelimited when number of SETs to be communicated is high
- * The receiver wants to optimize processing multiple SETs
+
+- The transmitter of the SET has multiple outstanding SETs to be communicated to the receiver
+- The transmitter wants to reduce the number of outbound calls to the same receiver to optimize performance, avoid being ratelimited when number of SETs to be communicated is high
+- The receiver wants to optimize processing multiple SETs
 
 Multi-push specification will handle all the usecases and scenarios for the {{RFC8935}} and make it more extensible to support multiple SETs per one outbound POST call.
 
@@ -68,16 +70,28 @@ Similar to {{RFC8935}} this specification makes mechanism for exchanging configu
 
 Each Receiver that supports this specification MUST support a "multi-push" endpoint. This endpoint MUST be capable of serving HTTP [RFC9110] requests. This endpoint MUST be TLS {{RFC8446}} enabled and MUST reject any communication not using TLS.
 
-The existing PUSH endpoint could also be extended to support accepting multiple SETs
+The existing PUSH endpoint {{RFC8935}} could also be extended to support accepting multiple SETs
 
+The Transmitter obtains the multi-push endpoint outside the scope of this specification.
+
+
+# SET delivery semantics
+
+In a multi-push based SET delivery using HTTP over TLS, zero or more SETs are delivered in a JSON {{RFC8259}} document
+to the SET Receiver. The receiver either acknowledges the successful receipt of the SETs or indicates failure in processing of one or more SETs in a JSON document to the Transmitter.
+
+After successful (acknowledged) SET delivery, SET Transmitters are not required to retain or record SETs for retransmission. Once a SET is acknowledged, the SET Recipient SHALL be responsible for retention, if needed. Transmitters may also discard undelivered SETs under deployment-specific conditions, such as if they have not been acknowledged (successful or failure) for over too long a period of time or if an excessive amount of storage is needed to retain them.
+
+Upon receiving a SET, the SET Recipient reads the SET and validates it in the manner described in Section 2 of {{RFC8935}}. The SET Recipient MUST acknowledge receipt to the SET Transmitter, and SHOULD do so in a timely fashion, as described in Section 2.4. The SET Recipient SHALL NOT use the event acknowledgement mechanism to report event errors other than those relating to the parsing and validation of the SET.
 
 ## Transmitting SETs
 
 A Transmitter may initiate communication with the receiver in order to:
- * Send SETs to the Receiver
- * Recive acknowledgement of the SETs in response
 
-The body of this request is of the content type "application/json". It MAY contains the following fields:
+ -  Send SETs to the Receiver
+ -  Recive acknowledgement of the SETs in response
+
+The body of this request is of the content type "application/json". It MAY contain the following fields:
 
 `sets`
 OPTIONAL. A JSON object containing key-value pairs in which the key of a field is a string that contains the jti value of the SET that is specified in the value of the field. This field MAY be omitted to indicate that no SETs are being delivered by the initiator in this communication. The Transmitter SHOULD limit 20 SETs in the sets.
@@ -152,7 +166,7 @@ In the above example, the Transmitter is sending 2 SETs to the Receiver.
 
       Figure 2: Example of SET Transmission with "moreAvailable"
 
-In the above example, the Transmitter is sending 2 SETs to the Receiver. The Tranmitter is also communicating to the reciver the outstanding SETs to be transmitted.
+In the above example, the Transmitter is sending 2 SETs to the Receiver. The Tranmitter is also communicating to the receiver the outstanding SETs to be transmitted.
 
       {
         "sets": {},
@@ -164,7 +178,7 @@ In the above example, the Transmitter is sending zero SETs to the Receiver. This
 
 ## Response Communication
 
-A Receiver MUST repond to the communication by sending an HTTP response. The body of this response is of the content type "application/json". It contains MAY contain following fields:
+A Receiver MUST repond to the communication by sending an HTTP response. The body of this response is of the content type "application/json". It contains MAY contain the following fields:
 
 `ack`
 OPTIONAL. An array of strings, in which each string is the jti value of a previously received SET that is acknowledged in this object. This array MAY be empty or this field MAY be omitted to indicate that no previously received SETs are being acknowledged in this communication.
@@ -180,7 +194,7 @@ OPTIONAL. An explanation of why the SET failed to be processed
 
 ### Success Response
 
-If the Receiver is successful in processing the request, it MUST return the HTTP status code 200 (OK). The response MUST have the content-type "application/json" and the response MUST include a Communication Object Section X.
+If the Receiver is successful in processing the request, it MUST return the HTTP status code 200 (OK). The response MUST have the content-type "application/json".
 
       HTTP/1.1 200 OK
       Content-type: application/json
@@ -219,6 +233,21 @@ In the above example, the Receiver acknowledges three of the SETs it previously 
 ### Error Response
 
 The receiver MUST respond with an error response if it is unable to process the request. The error response MUST include the appropriate error code as described in Section 2.4 of DeliveryPush {{RFC8935}}.
+
+# Authentication and Authorization
+
+The Transmitter MUST verify the identity of the Receiver by validating
+the TLS certification presented by the Receiver, and verifying that
+it is the intended recipient of the request, before sending the SETs.
+
+The Transmitter MUST attempt to obtain the OAuth Protected Resource
+Metadata {{I-D.ietf-oauth-resource-metadata}} for the Receiver's multi-push endpoint.  If such metadata is
+found, the Transmitter MUST obtain an access token using the metadata.
+If no such metadata is found, then the Transmitter MAY use any means to
+authorize itself to the Receiver.
+
+The Receiver MUST verify the identity and authorization of the
+Transmitter.
 
 # Conventions and Definitions
 
