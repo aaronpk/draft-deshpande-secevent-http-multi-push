@@ -85,6 +85,12 @@ After successful (acknowledged) SET delivery, SET Transmitters are not required 
 
 Upon receiving a SET, the SET Recipient reads the SET and validates it in the manner described in Section 2 of {{RFC8935}}. The SET Recipient MUST acknowledge receipt to the SET Transmitter, and SHOULD do so in a timely fashion, as described in Section 2.4. The SET Recipient SHALL NOT use the event acknowledgement mechanism to report event errors other than those relating to the parsing and validation of the SET.
 
+## Acknowledgement for all SETs
+A Transmitter MUST ensure that it includes the `jti` value of each SET it receives, either in an ack or a setErrs value, to the Transmitter from which it received the SETs. A Transmitter SHOULD retry sending the same SET again if it was never responded to either in an ack value or in a setErrs value by a receiver in a reasonable time period. A Transmitter MAY limit the number of times it retries sending a SET. A Transmitter MAY publish the retry time period and maximum number of retries to its peers, but such publication is outside the scope of this specification.
+
+## Uniqueness of SETs
+A Transmitter MUST NOT send two SETs with the same `jti` value if the SET has been either acknowledged through ack value or produced an error indicated by a setErrs value. If a Transmitter wishes to re-send an event after it has received a error response through a setErrs value, then it MUST generate a new SET that has a new (and unique) jti value.
+
 ## Transmitting SETs
 
 A Transmitter may initiate communication with the receiver in order to:
@@ -101,7 +107,7 @@ OPTIONAL. A JSON object containing key-value pairs in which the key of a field i
 A JSON boolean value that indicates if more unacknowledged SETs are available to be returned. This member MAY be omitted, with the meaning being the same as including it with the boolean value false.
 
 
-The following is a non-normative example of a Communication Object
+The following is a non-normative example of a response.
 
       {
         "sets": {
@@ -131,7 +137,7 @@ The following is a non-normative example of a Communication Object
         }
       }
 
-            Figure 1: Example of SET Transmission
+_Figure 1: Example of SET Transmission_
 
 In the above example, the Transmitter is sending 2 SETs to the Receiver.
 
@@ -165,7 +171,7 @@ In the above example, the Transmitter is sending 2 SETs to the Receiver.
 
       }
 
-            Figure 2: Example of SET Transmission with "moreAvailable"
+_Figure 2: Example of SET Transmission with "moreAvailable"_
 
 In the above example, the Transmitter is sending 2 SETs to the Receiver. The Tranmitter is also communicating to the receiver the outstanding SETs to be transmitted.
 
@@ -173,7 +179,7 @@ In the above example, the Transmitter is sending 2 SETs to the Receiver. The Tra
         "sets": {},
       }
 
-            Figure 3: Example of empty SET transmission
+_Figure 3: Example of empty SET transmission_
 
 In the above example, the Transmitter is sending zero SETs to the Receiver. This placeholder/empty request provides the Receiver to respond back with ack/err for previously transmitted SETs
 
@@ -206,7 +212,7 @@ If the Receiver is successful in processing the request, it MUST return the HTTP
         ]
       }
 
-            Figure 3: Example of SET Transmission response with ack
+_Figure 4: Example of SET Transmission response with ack_
 
 In the above example, the Receiver acknowledges one of the SETs it previously received. There are no errors reported by the Receiver.
 
@@ -227,9 +233,13 @@ In the above example, the Receiver acknowledges one of the SETs it previously re
          }
       }
 
-            Figure 4: Example of SET Transmission response, with ack and errors
+_Figure 5: Example of SET Transmission response, ack and errors_
 
 In the above example, the Receiver acknowledges three of the SETs it previously received. There are errors reported by the Receiver for acklowledging one SET.
+
+#### Out of order delivery
+
+A Response may contain `jti` values in its ack or setErrs that do not correspond to the SETs received in the same Request to which the Response is being sent. They MAY consist of values received in previous Requests.
 
 ### Error Response
 
@@ -249,6 +259,15 @@ authorize itself to the Receiver.
 
 The Receiver MUST verify the identity and authorization of the
 Transmitter.
+
+
+# Delivery Reliability
+A Transmitter MUST attempt to deliver any SETs it has previously attempted to deliver to a Peer until: 
+   - It receives an acknowledgement through the ack value for that SET in a subsequent communication with the Peer 
+   - It receives a setErrs object for that SET in a subsequent communication with the Peer 
+   - It has attempted to deliver the SET a maximum number of times and has failed to communicate either due to communication errors or lack of inclusion in ack or setErrs in subsequent communications that were conducted for the maximum number of times. The maximum number of attempts MAY be set by the Transmitter for itself and SHOULD be communicated offline to the Peers
+
+Additionally consider Delivery Relieability aspects discussed in {{RFC8935}} section 4.
 
 # Conventions and Definitions
 
