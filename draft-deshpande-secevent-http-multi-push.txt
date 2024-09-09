@@ -5,7 +5,7 @@
 Security Events                                             A. Deshpande
 Internet-Draft                                                A. Parecki
 Intended status: Standards Track                                    Okta
-Expires: 8 March 2025                                   4 September 2024
+Expires: 13 March 2025                                  9 September 2024
 
 
     Multi-Push-Based Security Event Token (SET) Delivery Using HTTP
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 March 2025.
+   This Internet-Draft will expire on 13 March 2025.
 
 Copyright Notice
 
@@ -73,15 +73,18 @@ Table of Contents
    1.  Introduction
    2.  Multi-Push Endpoint
    3.  SET delivery semantics
-     3.1.  Transmitting SETs
-     3.2.  Response Communication
-       3.2.1.  Success Response
-       3.2.2.  Error Response
+     3.1.  Acknowledgement for all SETs
+     3.2.  Uniqueness of SETs
+     3.3.  Transmitting SETs
+     3.4.  Response Communication
+       3.4.1.  Success Response
+       3.4.2.  Error Response
    4.  Authentication and Authorization
-   5.  Conventions and Definitions
-   6.  Security Considerations
-   7.  IANA Considerations
-   8.  Normative References
+   5.  Delivery Reliability
+   6.  Conventions and Definitions
+   7.  Security Considerations
+   8.  IANA Considerations
+   9.  Normative References
    Acknowledgments
    Authors' Addresses
 
@@ -152,7 +155,28 @@ Table of Contents
    event errors other than those relating to the parsing and validation
    of the SET.
 
-3.1.  Transmitting SETs
+3.1.  Acknowledgement for all SETs
+
+   A Transmitter MUST ensure that it includes the jti value of each SET
+   it receives, either in an ack or a setErrs value, to the Transmitter
+   from which it received the SETs.  A Transmitter SHOULD retry sending
+   the same SET again if it was never responded to either in an ack
+   value or in a setErrs value by a receiver in a reasonable time
+   period.  A Transmitter MAY limit the number of times it retries
+   sending a SET.  A Transmitter MAY publish the retry time period and
+   maximum number of retries to its peers, but such publication is
+   outside the scope of this specification.
+
+3.2.  Uniqueness of SETs
+
+   A Transmitter MUST NOT send two SETs with the same jti value if the
+   SET has been either acknowledged through ack value or produced an
+   error indicated by a setErrs value.  If a Transmitter wishes to re-
+   send an event after it has received a error response through a
+   setErrs value, then it MUST generate a new SET that has a new (and
+   unique) jti value.
+
+3.3.  Transmitting SETs
 
    A Transmitter may initiate communication with the receiver in order
    to:
@@ -176,7 +200,7 @@ Table of Contents
    omitted, with the meaning being the same as including it with the
    boolean value false.
 
-   The following is a non-normative example of a Communication Object
+   The following is a non-normative example of a response.
 
      {
        "sets": {
@@ -206,7 +230,7 @@ Table of Contents
        }
      }
 
-           Figure 1: Example of SET Transmission
+   _Figure 1: Example of SET Transmission_
 
    In the above example, the Transmitter is sending 2 SETs to the
    Receiver.
@@ -241,7 +265,7 @@ Table of Contents
 
      }
 
-           Figure 2: Example of SET Transmission with "moreAvailable"
+   _Figure 2: Example of SET Transmission with "moreAvailable"_
 
    In the above example, the Transmitter is sending 2 SETs to the
    Receiver.  The Tranmitter is also communicating to the receiver the
@@ -251,13 +275,13 @@ Table of Contents
        "sets": {},
      }
 
-           Figure 3: Example of empty SET transmission
+   _Figure 3: Example of empty SET transmission_
 
    In the above example, the Transmitter is sending zero SETs to the
    Receiver.  This placeholder/empty request provides the Receiver to
    respond back with ack/err for previously transmitted SETs
 
-3.2.  Response Communication
+3.4.  Response Communication
 
    A Receiver MUST repond to the communication by sending an HTTP
    response.  The body of this response is of the content type
@@ -281,7 +305,7 @@ Table of Contents
    description OPTIONAL.  An explanation of why the SET failed to be
    processed
 
-3.2.1.  Success Response
+3.4.1.  Success Response
 
    If the Receiver is successful in processing the request, it MUST
    return the HTTP status code 200 (OK).  The response MUST have the
@@ -296,35 +320,42 @@ Table of Contents
        ]
      }
 
-           Figure 3: Example of SET Transmission response with ack
+   _Figure 4: Example of SET Transmission response with ack_
 
    In the above example, the Receiver acknowledges one of the SETs it
    previously received.  There are no errors reported by the Receiver.
 
-  HTTP/1.1 200 OK
-  Content-type: application/json
+     HTTP/1.1 200 OK
+     Content-type: application/json
 
-  {
-     "ack": [
-      "f52901c4-3996-11ef-9454-0242ac120002",
-      "0636e274-3997-11ef-9454-0242ac120002",
-      "d563c724-79a0-4ff0-ba41-657fa5e2cb11"
-     ],
-     "setErrs": {
-      "5c436b19-0958-4367-b408-2dd542606d3b" : {
-        "err": "invalid subject",
-        "description": "subject format not supported"
-      }
+     {
+        "ack": [
+         "f52901c4-3996-11ef-9454-0242ac120002",
+         "0636e274-3997-11ef-9454-0242ac120002",
+         "d563c724-79a0-4ff0-ba41-657fa5e2cb11"
+        ],
+        "setErrs": {
+         "5c436b19-0958-4367-b408-2dd542606d3b" : {
+           "err": "invalid subject",
+           "description": "subject format not supported"
+         }
+        }
      }
-  }
 
-        Figure 4: Example of SET Transmission response, with ack and errors
+   _Figure 5: Example of SET Transmission response, ack and errors_
 
    In the above example, the Receiver acknowledges three of the SETs it
    previously received.  There are errors reported by the Receiver for
    acklowledging one SET.
 
-3.2.2.  Error Response
+3.4.1.1.  Out of order delivery
+
+   A Response may contain jti values in its ack or setErrs that do not
+   correspond to the SETs received in the same Request to which the
+   Response is being sent.  They MAY consist of values received in
+   previous Requests.
+
+3.4.2.  Error Response
 
    The receiver MUST respond with an error response if it is unable to
    process the request.  The error response MUST include the appropriate
@@ -347,7 +378,24 @@ Table of Contents
    The Receiver MUST verify the identity and authorization of the
    Transmitter.
 
-5.  Conventions and Definitions
+5.  Delivery Reliability
+
+   A Transmitter MUST attempt to deliver any SETs it has previously
+   attempted to deliver to a Peer until: - It receives an
+   acknowledgement through the ack value for that SET in a subsequent
+   communication with the Peer - It receives a setErrs object for that
+   SET in a subsequent communication with the Peer - It has attempted to
+   deliver the SET a maximum number of times and has failed to
+   communicate either due to communication errors or lack of inclusion
+   in ack or setErrs in subsequent communications that were conducted
+   for the maximum number of times.  The maximum number of attempts MAY
+   be set by the Transmitter for itself and SHOULD be communicated
+   offline to the Peers
+
+   Additionally consider Delivery Relieability aspects discussed in
+   [RFC8935] section 4.
+
+6.  Conventions and Definitions
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
@@ -355,15 +403,15 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-6.  Security Considerations
+7.  Security Considerations
 
    TODO Security
 
-7.  IANA Considerations
+8.  IANA Considerations
 
    This document has no IANA actions.
 
-8.  Normative References
+9.  Normative References
 
    [I-D.ietf-oauth-resource-metadata]
               Jones, M. B., Hunt, P., and A. Parecki, "OAuth 2.0
