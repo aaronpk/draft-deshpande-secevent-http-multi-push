@@ -69,10 +69,7 @@ Similar to {{RFC8935}} this specification makes mechanism for exchanging configu
 
 # Multi-Push Endpoint
 
-Each Receiver that supports this specification MUST support a "multi-push" endpoint. This endpoint MUST be capable of serving HTTP [RFC9110] requests. This endpoint MUST be TLS {{RFC8446}} enabled and MUST reject any communication not using TLS.
-
-The existing PUSH endpoint {{RFC8935}} could also be extended to support accepting multiple SETs
-
+Each Receiver that supports this specification MUST support a "multi-push" endpoint. This endpoint MUST be capable of serving HTTP POST {{RFC7231}} requests. This endpoint MUST be TLS {{RFC8446}} enabled and MUST reject any communication not using TLS. 
 The Transmitter obtains the multi-push endpoint outside the scope of this specification.
 
 
@@ -101,7 +98,7 @@ A Transmitter may initiate communication with the receiver in order to:
 The body of this request is of the content type "application/json". It MAY contain the following fields:
 
 `sets`
-OPTIONAL. A JSON object containing key-value pairs in which the key of a field is a string that contains the jti value of the SET that is specified in the value of the field. This field MAY be omitted to indicate that no SETs are being delivered by the initiator in this communication. The Transmitter SHOULD limit 20 SETs in the sets.
+OPTIONAL. A JSON object containing key-value pairs in which the key of a field is a string that contains the jti claim of the SET that is specified in the value of the field. This field MAY be omitted to indicate that no SETs are being delivered by the initiator in this communication. The Transmitter SHOULD limit 20 SETs in the sets.
 
 `moreAvailable`
 A JSON boolean value that indicates if more unacknowledged SETs are available to be returned. This member MAY be omitted, with the meaning being the same as including it with the boolean value false.
@@ -221,12 +218,12 @@ In the above example, the Receiver acknowledges one of the SETs it previously re
 
       {
          "ack": [
-          "f52901c4-3996-11ef-9454-0242ac120002",
-          "0636e274-3997-11ef-9454-0242ac120002",
-          "d563c724-79a0-4ff0-ba41-657fa5e2cb11"
+          "f52901c499611ef94540242ac12000322",
+          "0636e274399711ef9454-0242ac120002",
+          "d563c72479a04ff0ba415657fa5e2cb11"
          ],
          "setErrs": {
-          "5c436b19-0958-4367-b408-2dd542606d3b" : {
+          "4d3559ec67504aaba65d40b0363faad8" : {
             "err": "invalid subject",
             "description": "subject format not supported"
           }
