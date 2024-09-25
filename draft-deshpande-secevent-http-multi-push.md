@@ -69,7 +69,7 @@ Similar to {{RFC8935}} this specification makes mechanism for exchanging configu
 
 # Multi-Push Endpoint
 
-Each Receiver that supports this specification MUST support a "multi-push" endpoint. This endpoint MUST be capable of serving HTTP POST {{RFC7231}} requests. This endpoint MUST be TLS {{RFC8446}} enabled and MUST reject any communication not using TLS. 
+Each Receiver that supports this specification MUST support a "multi-push" endpoint. This endpoint MUST be capable of serving HTTP POST {{RFC7231}} requests. This endpoint MUST be TLS {{RFC8446}} enabled and MUST reject any communication not using TLS.
 The Transmitter obtains the multi-push endpoint outside the scope of this specification.
 
 
