@@ -80,7 +80,9 @@ to the SET Receiver. The receiver either acknowledges the successful receipt of 
 
 After successful (acknowledged) SET delivery, SET Transmitters are not required to retain or record SETs for retransmission. Once a SET is acknowledged, the SET Recipient SHALL be responsible for retention, if needed. Transmitters may also discard undelivered SETs under deployment-specific conditions, such as if they have not been acknowledged (successful or failure) for over too long a period of time or if an excessive amount of storage is needed to retain them.
 
-Upon receiving a SET, the SET Recipient reads the SET and validates it in the manner described in Section 2 of {{RFC8935}}. The SET Recipient MUST acknowledge receipt to the SET Transmitter, and SHOULD do so in a timely fashion, as described in Section 2.4. The SET Recipient SHALL NOT use the event acknowledgement mechanism to report event errors other than those relating to the parsing and validation of the SET.
+Upon receiving a SET, the SET Recipient reads the SET and validates it in the manner described in {{Section 2 of RFC8935}}. The SET Recipient MUST acknowledge receipt to the SET Transmitter, and SHOULD do so in a timely fashion (e.g., miliseconds. The SET Recipient SHALL NOT use the event acknowledgement mechanism to report event errors other than those relating to the parsing and validation of the SET.
+
+Receiver MAY communication to the transmitter ahead of time, how many SETs it can process in a single call. This communication is outside the scope of this specification.
 
 ## Acknowledgement for all SETs
 A Transmitter MUST ensure that it includes the `jti` value of each SET it receives, either in an ack or a setErrs value, to the Transmitter from which it received the SETs. A Transmitter SHOULD retry sending the same SET again if it was never responded to either in an ack value or in a setErrs value by a receiver in a reasonable time period. A Transmitter MAY limit the number of times it retries sending a SET. A Transmitter MAY publish the retry time period and maximum number of retries to its peers, but such publication is outside the scope of this specification.
@@ -99,9 +101,6 @@ The body of this request is of the content type "application/json". It MAY conta
 
 `sets`
 OPTIONAL. A JSON object containing key-value pairs in which the key of a field is a string that contains the jti claim of the SET that is specified in the value of the field. This field MAY be omitted to indicate that no SETs are being delivered by the initiator in this communication. The Transmitter SHOULD limit 20 SETs in the sets.
-
-`moreAvailable`
-A JSON boolean value that indicates if more unacknowledged SETs are available to be returned. This member MAY be omitted, with the meaning being the same as including it with the boolean value false.
 
 
 The following is a non-normative example of a response.
@@ -139,44 +138,10 @@ _Figure 1: Example of SET Transmission_
 In the above example, the Transmitter is sending 2 SETs to the Receiver.
 
       {
-        "sets": {
-          "4d3559ec67504aaba65d40b0363faad8":
-          "eyJhbGciOiJub25lIn0.
-          eyJqdGkiOiI0ZDM1NTllYzY3NTA0YWFiYTY1ZDQwYjAzNjNmYWFkOCIsImlhdC
-          I6MTQ1ODQ5NjQwNCwiaXNzIjoiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tIiwi
-          YXVkIjpbImh0dHBzOi8vc2NpbS5leGFtcGxlLmNvbS9GZWVkcy85OGQ1MjQ2MW
-          ZhNWJiYzg3OTU5M2I3NzU0IiwiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tL0Zl
-          ZWRzLzVkNzYwNDUxNmIxZDA4NjQxZDc2NzZlZTciXSwiZXZlbnRzIjp7InVybj
-          ppZXRmOnBhcmFtczpzY2ltOmV2ZW50OmNyZWF0ZSI6eyJyZWYiOiJodHRwczov
-          L3NjaW0uZXhhbXBsZS5jb20vVXNlcnMvNDRmNjE0MmRmOTZiZDZhYjYxZTc1Mj
-          FkOSIsImF0dHJpYnV0ZXMiOlsiaWQiLCJuYW1lIiwidXNlck5hbWUiLCJwYXNz
-          d29yZCIsImVtYWlscyJdfX19.",
-          "3d0c3cf797584bd193bd0fb1bd4e7d30":
-          "eyJhbGciOiJub25lIn0.
-          eyJqdGkiOiIzZDBjM2NmNzk3NTg0YmQxOTNiZDBmYjFiZDRlN2QzMCIsImlhdC
-          I6MTQ1ODQ5NjAyNSwiaXNzIjoiaHR0cHM6Ly9zY2ltLmV4YW1wbGUuY29tIiwi
-          YXVkIjpbImh0dHBzOi8vamh1Yi5leGFtcGxlLmNvbS9GZWVkcy85OGQ1MjQ2MW
-          ZhNWJiYzg3OTU5M2I3NzU0IiwiaHR0cHM6Ly9qaHViLmV4YW1wbGUuY29tL0Zl
-          ZWRzLzVkNzYwNDUxNmIxZDA4NjQxZDc2NzZlZTciXSwic3ViIjoiaHR0cHM6Ly
-          9zY2ltLmV4YW1wbGUuY29tL1VzZXJzLzQ0ZjYxNDJkZjk2YmQ2YWI2MWU3NTIx
-          ZDkiLCJldmVudHMiOnsidXJuOmlldGY6cGFyYW1zOnNjaW06ZXZlbnQ6cGFzc3
-          dvcmRSZXNldCI6eyJpZCI6IjQ0ZjYxNDJkZjk2YmQ2YWI2MWU3NTIxZDkifSwi
-          aHR0cHM6Ly9leGFtcGxlLmNvbS9zY2ltL2V2ZW50L3Bhc3N3b3JkUmVzZXRFeH
-          QiOnsicmVzZXRBdHRlbXB0cyI6NX19fQ."
-        },
-        "moreAvailable": 10
-
-      }
-
-_Figure 2: Example of SET Transmission with "moreAvailable"_
-
-In the above example, the Transmitter is sending 2 SETs to the Receiver. The Tranmitter is also communicating to the receiver the outstanding SETs to be transmitted.
-
-      {
         "sets": {},
       }
 
-_Figure 3: Example of empty SET transmission_
+_Figure 2: Example of empty SET transmission_
 
 In the above example, the Transmitter is sending zero SETs to the Receiver. This placeholder/empty request provides the Receiver to respond back with ack/err for previously transmitted SETs
 
@@ -209,7 +174,7 @@ If the Receiver is successful in processing the request, it MUST return the HTTP
         ]
       }
 
-_Figure 4: Example of SET Transmission response with ack_
+_Figure 3: Example of SET Transmission response with ack_
 
 In the above example, the Receiver acknowledges one of the SETs it previously received. There are no errors reported by the Receiver.
 
@@ -230,7 +195,7 @@ In the above example, the Receiver acknowledges one of the SETs it previously re
          }
       }
 
-_Figure 5: Example of SET Transmission response, ack and errors_
+_Figure 4: Example of SET Transmission response, ack and errors_
 
 In the above example, the Receiver acknowledges three of the SETs it previously received. There are errors reported by the Receiver for acklowledging one SET.
 
@@ -240,9 +205,9 @@ A Response may contain `jti` values in its ack or setErrs that do not correspond
 
 ### Error Response
 
-The receiver MUST respond with an error response if it is unable to process the request. The error response MUST include the appropriate error code as described in Section 2.4 of DeliveryPush {{RFC8935}}.
+The receiver MUST respond with an error response if it is unable to process the request. The error response MUST include the appropriate error code as described in {{Section 2.4 of RFC8935}}.
 
-# Authentication and Authorization
+# Authentication and Authorization {#authn-and-authz}
 
 The Transmitter MUST verify the identity of the Receiver by validating
 the TLS certification presented by the Receiver, and verifying that
@@ -254,17 +219,13 @@ found, the Transmitter MUST obtain an access token using the metadata.
 If no such metadata is found, then the Transmitter MAY use any means to
 authorize itself to the Receiver.
 
-The Receiver MUST verify the identity and authorization of the
-Transmitter.
-
-
 # Delivery Reliability
 A Transmitter MUST attempt to deliver any SETs it has previously attempted to deliver to a Peer until:
    - It receives an acknowledgement through the ack value for that SET in a subsequent communication with the Peer
    - It receives a setErrs object for that SET in a subsequent communication with the Peer
    - It has attempted to deliver the SET a maximum number of times and has failed to communicate either due to communication errors or lack of inclusion in ack or setErrs in subsequent communications that were conducted for the maximum number of times. The maximum number of attempts MAY be set by the Transmitter for itself and SHOULD be communicated offline to the Peers
 
-Additionally consider Delivery Relieability aspects discussed in {{RFC8935}} section 4.
+Additionally consider Delivery Relieability aspects discussed in {{Section 4 of RFC8935}} .
 
 # Conventions and Definitions
 
@@ -273,8 +234,20 @@ Additionally consider Delivery Relieability aspects discussed in {{RFC8935}} sec
 
 # Security Considerations
 
-TODO Security
+## Too many SETs in the response
+Receiver MUST inform the transmitter (out of band) the maximum number of SETs that could be consumed in a single call. The Transmitter MUST obey the maximum number of SETs to be communicated to the receiver. This will avoid any potential truncations/loss of information at the receiver.
 
+## Authentication and Authorization
+Transmitter MUST follow the procedures described in section {{authn-and-authz}} in order to securely authenticate and authorize Peers
+
+## HTTP and TLS
+Transmitter MUST use TLS {{RFC8446}} to communicate with Receiver and is subject to the security considerations of HTTP {{Section 17 of RFC9110}}.
+
+Additional security consideration in {{Section 5 of RFC8935}}.
+
+# Privacy Considerations
+
+Privacy Considerations from {{Section 6 of RFC8935}} apply.
 
 # IANA Considerations
 
