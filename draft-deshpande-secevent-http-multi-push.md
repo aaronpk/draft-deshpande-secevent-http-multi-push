@@ -19,7 +19,7 @@ venue:
   mail: "id-event@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/id-event/"
   github: "aaronpk/draft-deshpande-secevent-http-multi-push"
-  latest: "https://aaronpk.github.io/draft-deshpande-secevent-http-multi-push/draft-deshpande-secevent-http-multi-push.html"
+  latest: "https://drafts.aaronpk.com/draft-deshpande-secevent-http-multi-push/draft-deshpande-secevent-http-multi-push.html"
 
 author:
  -
