@@ -80,7 +80,7 @@ to the SET Receiver. The receiver either acknowledges the successful receipt of 
 
 After successful (acknowledged) SET delivery, SET Transmitters are not required to retain or record SETs for retransmission. Once a SET is acknowledged, the SET Recipient SHALL be responsible for retention, if needed. Transmitters may also discard undelivered SETs under deployment-specific conditions, such as if they have not been acknowledged (successful or failure) for over too long a period of time or if an excessive amount of storage is needed to retain them.
 
-Upon receiving a SET, the SET Recipient reads the SET and validates it in the manner described in {{Section 2 of RFC8935}}. The SET Recipient MUST acknowledge receipt to the SET Transmitter, and SHOULD do so in a timely fashion (e.g., miliseconds. The SET Recipient SHALL NOT use the event acknowledgement mechanism to report event errors other than those relating to the parsing and validation of the SET.
+Upon receiving a SET, the SET Recipient reads the SET and validates it in the manner described in {{Section 2 of RFC8935}}. The SET Recipient MUST acknowledge receipt to the SET Transmitter, and SHOULD do so in a timely fashion (e.g., miliseconds). The SET Recipient SHALL NOT use the event acknowledgement mechanism to report event errors other than those relating to the parsing and validation of the SET.
 
 ## Acknowledgement for all SETs
 A Transmitter MUST ensure that it includes the `jti` value of each SET it receives, either in an ack or a setErrs value, to the Transmitter from which it received the SETs. A Transmitter SHOULD retry sending the same SET again if it was never responded to either in an ack value or in a setErrs value by a receiver in a reasonable time period. A Transmitter MAY limit the number of times it retries sending a SET. A Transmitter MAY publish the retry time period and maximum number of retries to its peers, but such publication is outside the scope of this specification.
@@ -93,7 +93,7 @@ A Transmitter MUST NOT send two SETs with the same `jti` value if the SET has be
 A Transmitter may initiate communication with the receiver in order to:
 
  -  Send SETs to the Receiver
- -  Recive acknowledgement of the SETs in response
+ -  Receive acknowledgement of the SETs in response
 
 The body of this request is of the content type "application/json". It MAY contain the following fields:
 
