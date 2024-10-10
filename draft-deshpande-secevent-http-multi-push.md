@@ -82,8 +82,6 @@ After successful (acknowledged) SET delivery, SET Transmitters are not required 
 
 Upon receiving a SET, the SET Recipient reads the SET and validates it in the manner described in {{Section 2 of RFC8935}}. The SET Recipient MUST acknowledge receipt to the SET Transmitter, and SHOULD do so in a timely fashion (e.g., miliseconds. The SET Recipient SHALL NOT use the event acknowledgement mechanism to report event errors other than those relating to the parsing and validation of the SET.
 
-Receiver MAY communication to the transmitter ahead of time, how many SETs it can process in a single call. This communication is outside the scope of this specification.
-
 ## Acknowledgement for all SETs
 A Transmitter MUST ensure that it includes the `jti` value of each SET it receives, either in an ack or a setErrs value, to the Transmitter from which it received the SETs. A Transmitter SHOULD retry sending the same SET again if it was never responded to either in an ack value or in a setErrs value by a receiver in a reasonable time period. A Transmitter MAY limit the number of times it retries sending a SET. A Transmitter MAY publish the retry time period and maximum number of retries to its peers, but such publication is outside the scope of this specification.
 
